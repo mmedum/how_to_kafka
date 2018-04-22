@@ -40,7 +40,6 @@ public class MessageConsumer {
 
     private void runMessageConsumer(){
         final Consumer<Long, String> consumer = createConsumer();
-        int noRecordsCount = 0;
 
         while (true) {
             final ConsumerRecords<Long, String> consumerRecords =
