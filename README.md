@@ -11,7 +11,11 @@ The Producer is using Kafka asynchron interface, so a send message functions
 through a callback, that will log that a message have been sent, when Kafka have
 acknowledge the message.
 
-
+The Consumer is programmed to poll Kafka for new messages, every start of the
+consumer application will handle a number of messages, but have no influence of
+which message it receives. We should not that multiple consumers with different
+groupid will read all the partitions, where consumers with the same groupid will
+split over the partitions.
 
 ## Setup
 1. Download [Kafka](https://www.apache.org/dyn/closer.cgi?path=/kafka/1.1.0/kafka_2.11-1.1.0.tgz)
@@ -28,3 +32,6 @@ acknowledge the message.
 With Zookeeper and Kafka running, the producer and consumer is able to run, at
 the moment both have hardcoded values for establising the connection and
 subscribing to `test-topic`.
+
+Try running on producer and multiple consumers, since the consumers run on the
+same groupid, the message will be split out between the consumers.
